@@ -1,0 +1,4 @@
+from .monument import MonumentViewSet, MonumentLocationView, MonumentHeritageDestinationView, MonumentInceptionsView, MonumentImageView,MonumentDetailView
+from .submission import SubmissionViewSet, SubmissionDailyView, SubmissionYearlyView,SubmissionYearlyAuthorView, SubmissionYearlyTotalView, SubmissionYearlyTotalAuthorView,SubmissionImageView, SubmissionDetailView
+from .participant import ParticipantView,ParticipantSubmissionView ,ParticipantDetailView
+from .competition import CompetitionStatisticsView

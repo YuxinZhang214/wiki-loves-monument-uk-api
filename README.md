@@ -1,2 +1,17 @@
-# wiki-loves-monument-uk-api
-Wiki Loves Monument UK Backend Application
+## Run the backend
+
+```bash
+    source venv/bin/activate
+    python manage.py runserver
+```
+
+Deactivate Virtual Environment
+
+```bash
+    deactivate
+```
+
+```bash
+    python manage.py makemigrations
+    python manage.py migrate
+```
