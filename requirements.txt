@@ -1,6 +1,7 @@
 asgiref==3.7.2
 certifi==2023.11.17
 charset-normalizer==3.3.2
+dj-database-url==2.1.0
 Django==4.2.8
 django-cors-headers==4.3.1
 djangorestframework==3.14.0
@@ -10,6 +11,7 @@ mwparserfromhell==0.6.6
 numpy==1.26.3
 packaging==24.0
 pandas==2.1.4
+psycopg2-binary==2.9.9
 python-dateutil==2.8.2
 pytz==2023.3.post1
 requests==2.31.0
@@ -18,4 +20,3 @@ sqlparse==0.4.4
 typing_extensions==4.9.0
 tzdata==2023.4
 urllib3==2.1.0
-dj-database-url
