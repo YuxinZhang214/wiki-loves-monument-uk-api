@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-2xe0ej69!3a6lc*%$tqn591(dk4lc=1jiu^o+uy$261a8p)gfc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wiki-loves-monument-uk-812f6bc0a918.herokuapp.com', '.herokuapp.com']
 
 # Application definition
 
