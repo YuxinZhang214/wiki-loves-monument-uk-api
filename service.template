@@ -1,0 +1,1 @@
+webservice --backend=kubernetes python3.7 uwsgi-plain -- -p /data/project/wiki-loves-monument-uk/src/uwsgi.ini
