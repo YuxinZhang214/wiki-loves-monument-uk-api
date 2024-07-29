@@ -126,5 +126,3 @@ venv.bak/
 # VS Code
 .vscode/
 .vercel
-
-/staticfiles

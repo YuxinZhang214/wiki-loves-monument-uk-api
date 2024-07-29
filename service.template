@@ -1,1 +1,6 @@
-webservice --backend=kubernetes python3.7 uwsgi-plain -- -p /data/project/wiki-loves-monument-uk/src/uwsgi.ini
+backend: kubernetes
+#cpu: 500m
+#mem: 512Mi
+#replicas: 2
+
+type: {{toolforge latest image|python3}}
