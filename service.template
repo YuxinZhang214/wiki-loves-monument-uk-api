@@ -2,5 +2,3 @@ backend: kubernetes
 #cpu: 500m
 #mem: 512Mi
 #replicas: 2
-
-type: {{toolforge latest image|python3}}
