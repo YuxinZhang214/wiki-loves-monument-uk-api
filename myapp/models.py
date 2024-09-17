@@ -13,7 +13,7 @@ class Monument(models.Model):
 
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
-    country = models.CharField(max_length=100, null=True, blank=True)
+    country = models.CharField(max_length=100, blank=True)
 
     inception = models.DateField(blank=True, null=True)
 

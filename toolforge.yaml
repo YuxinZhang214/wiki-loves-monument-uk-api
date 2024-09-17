@@ -1,0 +1,5 @@
+DB_NAME: 's56009__wlm'
+DB_USER: 's56009'
+DB_PASSWORD: ''  # Leave this empty, it will be filled by Toolforge
+DB_HOST: 'tools.db.svc.wikimedia.cloud'
+DB_PORT: '3306'
