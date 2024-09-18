@@ -1,4 +1,10 @@
-## Run the backend
+# Wiki Loves Monuments - UK
+
+## Project Description
+
+This is the backend application for the Wiki Loves Monuments tool, hosted on Toolforge. The project aims to support the visualisation of monuments data across the UK in collaboration with Wikimedia. You can view the visualisation application You can view the visualisation application at https://wiki-loves-monument-uk-visualisation.vercel.app/
+
+## Running the project
 
 ```bash
     source venv/bin/activate
@@ -62,3 +68,11 @@ Deactivate Virtual Environment
    ```
 
 9. Your application should now be accessible at `https://wlm-uk.toolforge.org`
+
+## Contributing
+
+We welcome contributions! Please submit a pull request or open an issue for bug reports, feature requests, or any questions.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
