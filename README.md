@@ -65,27 +65,6 @@ For local development and testing, please refer to the "Run the backend" section
    - Method: GET
    - Example: `GET /monuments/inceptions`
 
-<<<<<<< Updated upstream
-9. Your application should now be accessible at `https://wlm-uk.toolforge.org`
-
-## Contributing
-
-We welcome contributions! Please submit a pull request or open an issue for bug reports, feature requests, or any questions.
-
-## Contact
-
-For any queries about the project, please contact the project supervisor at ksrh1@st-andrews.ac.uk.
-
-## Acknowledgements
-
-- University of St Andrews, School of Computer Science: For providing academic support and resources.
-- Wiki Loves Monuments Community: For their invaluable contributions to cultural heritage.
-- Wikimedia Foundation: For their support and collaboration in this project.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-=======
 5. **Get monument images**
    - URL: `/monuments/images`
    - Method: GET
@@ -166,4 +145,21 @@ This project is licensed under the MIT License. See the LICENSE file for details
       ```bash
       curl -X GET "https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/" -H "Accept: application/json"
       ```
->>>>>>> Stashed changes
+
+## Contributing
+
+We welcome contributions! Please submit a pull request or open an issue for bug reports, feature requests, or any questions.
+
+## Contact
+
+For any queries about the project, please contact the project supervisor at ksrh1@st-andrews.ac.uk.
+
+## Acknowledgements
+
+- University of St Andrews, School of Computer Science: For providing academic support and resources.
+- Wiki Loves Monuments Community: For their invaluable contributions to cultural heritage.
+- Wikimedia Foundatiodasn: For their support and collaboration in this project.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
