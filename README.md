@@ -37,9 +37,7 @@ Deactivate Virtual Environment
 
 ## Deployment
 
-The application is currently not running on Toolforge. The planned URL `https://wiki-loves-monument-uk.toolforge.org/api/` is not active at this time.
-
-For local development and testing, please refer to the "Run the backend" section above.
+The application is currently running at `https://wiki-loves-monument-uk.toolforge.org/api/`
 
 ## API Endpoints
 
