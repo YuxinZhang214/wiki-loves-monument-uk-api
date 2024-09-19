@@ -77,6 +77,12 @@ else:
             'PASSWORD': tf_config['DB_PASSWORD'],
             'HOST': tf_config['DB_HOST'],
             'PORT': tf_config['DB_PORT'],
+            'OPTIONS': {
+                # somehow MariaDB will not handle unicode properly without the following two lines
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                'charset': 'utf8mb4',                  
+                'read_default_file': os.path.expanduser("~/replica.my.cnf")
+            },
         }
     }
 

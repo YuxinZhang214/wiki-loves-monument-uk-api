@@ -35,50 +35,37 @@ Deactivate Virtual Environment
     python3 manage.py migrate
 ```
 
-## Deployment on Toolforge
+## Deployment
 
-1. SSH into your Toolforge account:
-   ```
-   ssh username@login.toolforge.org
-   ```
+The application is currently not running on Toolforge. The planned URL `https://wiki-loves-monument-uk.toolforge.org/api/` is not active at this time.
 
-2. Clone the repository:
-   ```
-   git clone https://github.com/your-repo/wlm-uk.git
-   ```
+For local development and testing, please refer to the "Run the backend" section above.
 
-3. Create a virtual environment:
-   ```
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+## API Endpoints
 
-4. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+### Monuments
 
-5. Copy the `toolforge.yaml` file to `/data/project/wlm-uk/`:
-   ```
-   cp toolforge.yaml /data/project/wlm-uk/
-   ```
+1. **List all monuments**
+   - URL: `/monuments/`
+   - Method: GET
+   - Example: `GET /monuments/`
 
-6. Set up the web service:
-   ```
-   webservice --backend=kubernetes python3.9 shell
-   webservice --backend=kubernetes python3.9 start
-   ```
+2. **Get monument locations**
+   - URL: `/monuments/locations`
+   - Method: GET
+   - Example: `GET /monuments/locations`
 
-7. Run migrations:
-   ```
-   python manage.py migrate
-   ```
+3. **Get heritage destinations**
+   - URL: `/monuments/destinations`
+   - Method: GET
+   - Example: `GET /monuments/destinations`
 
-8. Collect static files:
-   ```
-   python manage.py collectstatic
-   ```
+4. **Get monument inceptions by year**
+   - URL: `/monuments/inceptions`
+   - Method: GET
+   - Example: `GET /monuments/inceptions`
 
+<<<<<<< Updated upstream
 9. Your application should now be accessible at `https://wlm-uk.toolforge.org`
 
 ## Contributing
@@ -98,3 +85,85 @@ For any queries about the project, please contact the project supervisor at ksrh
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
+=======
+5. **Get monument images**
+   - URL: `/monuments/images`
+   - Method: GET
+   - Example: `GET /monuments/images`
+
+6. **Get monument details**
+   - URL: `/monuments/<str:label>`
+   - Method: GET
+   - Example: `GET /monuments/eiffel_tower`
+
+### Participants
+
+7. **List all participants**
+   - URL: `/participants/`
+   - Method: GET
+   - Example: `GET /participants/`
+
+8. **Get participant submissions**
+   - URL: `/participants/submissions`
+   - Method: GET
+   - Example: `GET /participants/submissions`
+
+9. **Get participant details**
+   - URL: `/participants/<str:authorname>/`
+   - Method: GET
+   - Example: `GET /participants/john_doe/`
+
+### Submissions
+
+10. **List all submissions**
+    - URL: `/submissions/`
+    - Method: GET
+    - Example: `GET /submissions/`
+
+11. **Get daily submissions**
+    - URL: `/submissions/daily`
+    - Method: GET
+    - Example: `GET /submissions/daily`
+
+12. **Get yearly submissions**
+    - URL: `/submissions/yearly`
+    - Method: GET
+    - Example: `GET /submissions/yearly`
+
+13. **Get total yearly submissions**
+    - URL: `/submissions/yearly/total`
+    - Method: GET
+    - Example: `GET /submissions/yearly/total`
+
+14. **Get yearly submissions by author**
+    - URL: `/submissions/yearly/<str:authorname>`
+    - Method: GET
+    - Example: `GET /submissions/yearly/john_doe`
+
+15. **Get total yearly submissions by author**
+    - URL: `/submissions/yearly/total/<str:authorname>/`
+    - Method: GET
+    - Example: `GET /submissions/yearly/total/john_doe/`
+
+16. **Get submission images**
+    - URL: `/submissions/images`
+    - Method: GET
+    - Example: `GET /submissions/images`
+
+17. **Get submission details**
+    - URL: `/submissions/<str:label>`
+    - Method: GET
+    - Example: `GET /submissions/eiffel_tower_photo`
+
+### Competition Statistics
+
+18. **Get competition statistics**
+    - URL: `/competition/statistics/`
+    - Method: GET
+    - Example: `GET /competition/statistics/`
+    - Working Toolforge URL: `https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/`
+    - Curl Example:
+      ```bash
+      curl -X GET "https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/" -H "Accept: application/json"
+      ```
+>>>>>>> Stashed changes
