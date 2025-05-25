@@ -39,13 +39,15 @@ Deactivate Virtual Environment
 
 The application is currently running at `https://wiki-loves-monument-uk.toolforge.org/api/`
 
+```bash
+curl -X GET "https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/" -H "Accept: application/json"
+```
+
 # API Endpoints
 
 **Base URL**: `https://wiki-loves-monument-uk.toolforge.org/api/`
 
----
-
-## 🏛 Monuments
+## Monuments
 
 | Endpoint | Description | Method | Example |
 |----------|-------------|--------|---------|
@@ -56,9 +58,7 @@ The application is currently running at `https://wiki-loves-monument-uk.toolforg
 | `/monuments/destinations/` | List all heritage destinations | GET | `/monuments/destinations/` |
 | `/monuments/inceptions/` | Get number of monuments by inception year | GET | `/monuments/inceptions/` |
 
----
-
-## 👥 Participants
+## Participants
 
 | Endpoint | Description | Method | Example |
 |----------|-------------|--------|---------|
@@ -68,7 +68,7 @@ The application is currently running at `https://wiki-loves-monument-uk.toolforg
 
 ---
 
-## 🖼 Submissions
+## Submissions
 
 | Endpoint | Description | Method | Example |
 |----------|-------------|--------|---------|
@@ -81,17 +81,12 @@ The application is currently running at `https://wiki-loves-monument-uk.toolforg
 | `/submissions/yearly/{authorname}/` | Yearly submissions by a specific participant | GET | `/submissions/yearly/john_doe/` |
 | `/submissions/yearly/total/{authorname}/` | Total yearly submissions by a participant | GET | `/submissions/yearly/total/john_doe/` |
 
----
-
-## 🏆 Competition
+## Competition
 
 | Endpoint | Description | Method | Example |
 |----------|-------------|--------|---------|
 | `/competition/statistics/` | Overall competition statistics | GET | `/competition/statistics/` |
 
-```bash
-curl -X GET "https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/" -H "Accept: application/json"
-```
 
 ## Contributing
 
