@@ -35,114 +35,66 @@ Deactivate Virtual Environment
     python3 manage.py migrate
 ```
 
+Run a command
+
+```bash
+    python manage.py fetch
+    python manage.py load
+    python manage.py process
+```
+
 ## Deployment
 
 The application is currently running at `https://wiki-loves-monument-uk.toolforge.org/api/`
 
-## API Endpoints
+# API Endpoints
 
-### Monuments
+**Base URL**: `https://wiki-loves-monument-uk.toolforge.org/api/`
 
-1. **List all monuments**
-   - URL: `/monuments/`
-   - Method: GET
-   - Example: `GET /monuments/`
+```bash
+curl -X GET "https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/" -H "Accept: application/json"
+```
 
-2. **Get monument locations**
-   - URL: `/monuments/locations`
-   - Method: GET
-   - Example: `GET /monuments/locations`
+## Monuments
 
-3. **Get heritage destinations**
-   - URL: `/monuments/destinations`
-   - Method: GET
-   - Example: `GET /monuments/destinations`
+| Endpoint | Description | Method | Example |
+|----------|-------------|--------|---------|
+| `/monuments/` | List all monuments | GET | `/monuments/` |
+| `/monuments/{label}/` | Get details for a specific monument | GET | `/monuments/eiffel_tower/` |
+| `/monuments/{label}/images/` | Get images for a specific monument | GET | `/monuments/eiffel_tower/images/` |
+| `/monuments/locations/` | List all monument locations | GET | `/monuments/locations/` |
+| `/monuments/destinations/` | List all heritage destinations | GET | `/monuments/destinations/` |
+| `/monuments/inceptions/` | Get number of monuments by inception year | GET | `/monuments/inceptions/` |
 
-4. **Get monument inceptions by year**
-   - URL: `/monuments/inceptions`
-   - Method: GET
-   - Example: `GET /monuments/inceptions`
+## Participants
 
-5. **Get monument images**
-   - URL: `/monuments/images`
-   - Method: GET
-   - Example: `GET /monuments/images`
+| Endpoint | Description | Method | Example |
+|----------|-------------|--------|---------|
+| `/participants/` | List all participants | GET | `/participants/` |
+| `/participants/{authorname}/` | Get details about a specific participant | GET | `/participants/john_doe/` |
+| `/participants/{authorname}/submissions/` | Get all submissions by a participant | GET | `/participants/john_doe/submissions/` |
 
-6. **Get monument details**
-   - URL: `/monuments/<str:label>`
-   - Method: GET
-   - Example: `GET /monuments/eiffel_tower`
+---
 
-### Participants
+## Submissions
 
-7. **List all participants**
-   - URL: `/participants/`
-   - Method: GET
-   - Example: `GET /participants/`
+| Endpoint | Description | Method | Example |
+|----------|-------------|--------|---------|
+| `/submissions/` | List all submissions | GET | `/submissions/` |
+| `/submissions/{label}/` | Get details for a specific submission | GET | `/submissions/eiffel_tower_photo/` |
+| `/submissions/images/` | List all submission images | GET | `/submissions/images/` |
+| `/submissions/daily/` | Daily submission stats | GET | `/submissions/daily/` |
+| `/submissions/yearly/` | Yearly submission stats | GET | `/submissions/yearly/` |
+| `/submissions/yearly/total/` | Total submissions per year | GET | `/submissions/yearly/total/` |
+| `/submissions/yearly/{authorname}/` | Yearly submissions by a specific participant | GET | `/submissions/yearly/john_doe/` |
+| `/submissions/yearly/total/{authorname}/` | Total yearly submissions by a participant | GET | `/submissions/yearly/total/john_doe/` |
 
-8. **Get participant submissions**
-   - URL: `/participants/submissions`
-   - Method: GET
-   - Example: `GET /participants/submissions`
+## Competition
 
-9. **Get participant details**
-   - URL: `/participants/<str:authorname>/`
-   - Method: GET
-   - Example: `GET /participants/john_doe/`
+| Endpoint | Description | Method | Example |
+|----------|-------------|--------|---------|
+| `/competition/statistics/` | Overall competition statistics | GET | `/competition/statistics/` |
 
-### Submissions
-
-10. **List all submissions**
-    - URL: `/submissions/`
-    - Method: GET
-    - Example: `GET /submissions/`
-
-11. **Get daily submissions**
-    - URL: `/submissions/daily`
-    - Method: GET
-    - Example: `GET /submissions/daily`
-
-12. **Get yearly submissions**
-    - URL: `/submissions/yearly`
-    - Method: GET
-    - Example: `GET /submissions/yearly`
-
-13. **Get total yearly submissions**
-    - URL: `/submissions/yearly/total`
-    - Method: GET
-    - Example: `GET /submissions/yearly/total`
-
-14. **Get yearly submissions by author**
-    - URL: `/submissions/yearly/<str:authorname>`
-    - Method: GET
-    - Example: `GET /submissions/yearly/john_doe`
-
-15. **Get total yearly submissions by author**
-    - URL: `/submissions/yearly/total/<str:authorname>/`
-    - Method: GET
-    - Example: `GET /submissions/yearly/total/john_doe/`
-
-16. **Get submission images**
-    - URL: `/submissions/images`
-    - Method: GET
-    - Example: `GET /submissions/images`
-
-17. **Get submission details**
-    - URL: `/submissions/<str:label>`
-    - Method: GET
-    - Example: `GET /submissions/eiffel_tower_photo`
-
-### Competition Statistics
-
-18. **Get competition statistics**
-    - URL: `/competition/statistics/`
-    - Method: GET
-    - Example: `GET /competition/statistics/`
-    - Working Toolforge URL: `https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/`
-    - Curl Example:
-      ```bash
-      curl -X GET "https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/" -H "Accept: application/json"
-      ```
 
 ## Contributing
 

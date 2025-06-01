@@ -20,7 +20,7 @@ from myapp.views import (
 )
 
 urlpatterns = [
-    # Existing paths for monuments
+    # paths for monuments
     path('monuments/', MonumentViewSet.as_view({'get': 'list'}), name='monument-all'),
     path('monuments/locations', MonumentLocationView.as_view(), name='monuments-location'),
     path('monuments/destinations', MonumentHeritageDestinationView.as_view(), name='monuments-heritage-destination'),
@@ -28,12 +28,12 @@ urlpatterns = [
     path('monuments/images', MonumentImageView.as_view(), name='monuments-images'),
     path('monuments/<str:label>', MonumentDetailView.as_view(), name='monuments-detail'),
     
-    # Paths for authors and author details
+    # paths for authors and author details
     path('participants/', ParticipantView.as_view(), name='participant-all'),
     path('participants/submissions', ParticipantSubmissionView.as_view(), name='participant-submission'),
     path('participants/<str:authorname>/', ParticipantDetailView.as_view(), name='participant-detail'),
 
-    # Add a path for submission-specific data
+    # path for submission-specific data
     path('submissions/', SubmissionYearlyView.as_view(), name='submissions-all'),
     path('submissions/daily', SubmissionDailyView.as_view(), name='submissions-daily'),
     path('submissions/yearly', SubmissionYearlyView.as_view(), name='submissions-yearly'),
@@ -43,6 +43,6 @@ urlpatterns = [
     path('submissions/images', SubmissionImageView.as_view(), name='submissions-images'),
     path('submissions/<str:label>', SubmissionDetailView.as_view(), name='submissions-detail'),
 
-    # Path for combined competition statistics
+    # path for combined competition statistics
     path('competition/statistics/', CompetitionStatisticsView.as_view(), name='competition-statistics'),
 ]
