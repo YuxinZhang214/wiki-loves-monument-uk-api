@@ -35,17 +35,25 @@ Deactivate Virtual Environment
     python3 manage.py migrate
 ```
 
+Run a command
+
+```bash
+    python manage.py fetch
+    python manage.py load
+    python manage.py process
+```
+
 ## Deployment
 
 The application is currently running at `https://wiki-loves-monument-uk.toolforge.org/api/`
 
-```bash
-curl -X GET "https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/" -H "Accept: application/json"
-```
-
 # API Endpoints
 
 **Base URL**: `https://wiki-loves-monument-uk.toolforge.org/api/`
+
+```bash
+curl -X GET "https://wiki-loves-monument-uk.toolforge.org/api/competition/statistics/" -H "Accept: application/json"
+```
 
 ## Monuments
 

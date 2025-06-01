@@ -9,24 +9,6 @@ from myapp.models import Monument, Submission
 
 logger = logging.getLogger(__name__)
     
-def parse_inception_date(date_string):
-    # Check if the date_string is "N/A" or any other non-date format string you expect
-    if date_string.strip().upper() in ["N/A", ""]:
-        return None  # Return None to indicate a null value should be used
-    
-    try:
-        # Attempt to parse the date string including time part
-        parsed_date = datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S")
-        return parsed_date.strftime('%Y-%m-%d')
-    except ValueError:
-        # If the first format fails, try ISO format
-        try:
-            parsed_date = datetime.fromisoformat(date_string.rstrip('Z'))
-            return parsed_date.strftime('%Y-%m-%d')
-        except ValueError as e:
-            logger.error(f"Failed to parse date from string: {date_string}. Error: {e}")
-            return None
-    
 class Command(BaseCommand):
     help = 'Loads data from CSV files into the database for image submissions and heritage data'
 
@@ -130,3 +112,21 @@ class Command(BaseCommand):
             'historic_county_label': item.get("Historic County Label", ""),
             'heritage_designation': heritage_designation,
         }
+    
+def parse_inception_date(date_string):
+    # Check if the date_string is "N/A" or any other non-date format string you expect
+    if date_string.strip().upper() in ["N/A", ""]:
+        return None  # Return None to indicate a null value should be used
+    
+    try:
+        # Attempt to parse the date string including time part
+        parsed_date = datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S")
+        return parsed_date.strftime('%Y-%m-%d')
+    except ValueError:
+        # If the first format fails, try ISO format
+        try:
+            parsed_date = datetime.fromisoformat(date_string.rstrip('Z'))
+            return parsed_date.strftime('%Y-%m-%d')
+        except ValueError as e:
+            logger.error(f"Failed to parse date from string: {date_string}. Error: {e}")
+            return None

@@ -1,8 +1,11 @@
 import os
 from pathlib import Path
+
 import dj_database_url
 import yaml
 
+
+# Core settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -14,7 +17,8 @@ DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
-# Application definition
+
+# Application configuration
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,6 +31,8 @@ INSTALLED_APPS = [
     'myapp'
 ]
 
+
+# Middleware configuration
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -41,6 +47,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'backend.urls'
 
+
+# Template configuration
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -59,7 +67,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Database
+
+# Database configuration
 if DEBUG:
     DATABASES = {
         'default': dj_database_url.config(default=f'sqlite:///{BASE_DIR}/db.sqlite3', conn_max_age=600)
@@ -86,7 +95,8 @@ else:
         }
     }
 
-# Password validation
+
+# Security configuration
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -94,13 +104,14 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
+
+# Internationalization configuration
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images) configuration
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -111,18 +122,21 @@ if not DEBUG:
     STATIC_ROOT = '/data/project/wlm-uk/www/static'
     MEDIA_ROOT = '/data/project/wlm-uk/www/media'
 
+
+# Default settings
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS settings
+
+# CORS (Cross-Origin Resource Sharing) configuration
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_HEADERS = [
     'accept', 'accept-encoding', 'authorization', 'content-type', 'dnt',
     'origin', 'user-agent', 'x-csrftoken', 'x-requested-with',
 ]
 
-# Production settings
-if not DEBUG:
+# Production-specific settings
+if not DEBUG:  # Apply production-specific settings only when not in debug mode
     SECURE_SSL_REDIRECT = False  # Toolforge handles HTTPS
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -132,10 +146,55 @@ if not DEBUG:
 # Use WhiteNoise for serving static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Email settings
+
+# Email configuration
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
-    # Configure your production email backend here
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    # Add other email settings as needed
+    # other production email settings: EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS, etc.
+# settings.py
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/commands.log', # Example file path
+            'formatter': 'verbose',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myapp.management.commands': { # This would catch your command's logger
+            'handlers': ['console', 'file'], # Send to both console and file
+            'level': 'INFO',
+            'propagate': False,
+        },
+        # If 'myapp.management.commands' is not defined,
+        # it might fall back to a configuration for 'myapp' or the root logger.
+        '': { # Root logger configuration (fallback)
+            'handlers': ['console'],
+            'level': 'WARNING', # Or whatever default you set
+        }
+    },
+}
