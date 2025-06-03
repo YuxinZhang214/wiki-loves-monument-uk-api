@@ -11,17 +11,17 @@ class Command(BaseCommand):
     help = 'Removes duplicate submission and monument entries with the same label and image_author'
 
     def handle(self, *args, **kwargs):
-        # remove_duplicates(Submission)
-        # logger.info('Duplicate submissions removal process completed.')
-        # self.stdout.write(self.style.SUCCESS('Successfully removed duplicate submissions'))
+        remove_duplicates(Submission)
+        logger.info('Duplicate submissions removal process completed.')
+        self.stdout.write(self.style.SUCCESS('Successfully removed duplicate submissions'))
 
-        # remove_duplicates(Monument)
-        # logger.info('Duplicate monuments removal process completed.')
-        # self.stdout.write(self.style.SUCCESS('Successfully removed duplicate monuments'))
+        remove_duplicates(Monument)
+        logger.info('Duplicate monuments removal process completed.')
+        self.stdout.write(self.style.SUCCESS('Successfully removed duplicate monuments'))
 
-        # remove_unlinked()
-        # logger.info('Unlinked monuments removal process completed.')
-        # self.stdout.write(self.style.SUCCESS('Successfully removed unlinked monuments'))
+        remove_unlinked()
+        logger.info('Unlinked monuments removal process completed.')
+        self.stdout.write(self.style.SUCCESS('Successfully removed unlinked monuments'))
 
         populate_field()
         logger.info('Field population process completed.')
