@@ -1,60 +1,57 @@
 import logging
-import requests
+import os
+import pandas as pd
+import geopandas as gpd
+from shapely.geometry import Point
 from myapp.models import Monument, Submission
 
 logger = logging.getLogger(__name__)
 
+# Load shapefile
+shapefile_path = "./myapp/management/commands/process_data/geo_data/CTRY_DEC_2024_UK_BFC.shp"
+gdf = gpd.read_file(shapefile_path)
+# Ensure CRS match
+if gdf.crs != "EPSG:4326":
+    gdf = gdf.to_crs("EPSG:4326")
+
 def populate_field():
     '''
-    'Populates country fields for each Monument and Submission with progress updates.
+    Populates country fields for each Monument and Submission with progress updates.
     '''
     _update_objects(Monument.objects.all(), 'Monument')
     logger.info('Successfully updated country fields for Monuments.')
-    
+
     _update_objects(Submission.objects.all(), 'Submission')
     logger.info('Successfully updated country fields for Submissions.')
 
 def _update_objects(objects, object_type):
     total = objects.count()
     logger.info(f'Updating country for {total} {object_type} objects...')
-    
+
     for i, obj in enumerate(objects, start=1):
         _update_country(obj)
-        if i % 100 == 0 or i == total:  # Print progress every 100 items or on last item
+        if i % 100 == 0 or i == total:
             logger.info(f'Processed {i}/{total} {object_type} objects...')
 
 def _update_country(obj):
     country = _get_country(obj.latitude, obj.longitude)
     if country:
-        obj.country = _standardize_country_name(country)
+        obj.country = country
         obj.save(update_fields=['country'])
 
 def _get_country(latitude, longitude):
     if latitude is None or longitude is None:
-        logger.warning(f"Latitude or longitude is None. Skipping country fetch. Lat: {latitude}, Lon: {longitude}")
+        logger.warning("Latitude or longitude is None. Skipping country fetch")
         return None
-    # zoom level 5 to get detailed regional subdivisions within the UK
-    url = f"https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json&zoom=5"
-    try:
-        response = requests.get(url, headers={'User-Agent': 'WLMUKAPI/1.0 PopulateCountry'}, timeout=10)
-        response.raise_for_status() 
-        data = response.json()
+    # Correct: shapely Point expects (longitude, latitude)
+    point = Point(longitude, latitude) 
 
-        country_name = data.get('address', {}).get('state')
-        if not country_name:
-            logger.warning(f"Could not determine country/state from Nominatim response for lat={latitude}, lon={longitude}. Response: {data.get('address')}")
-        return country_name
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error fetching country for lat={latitude}, lon={longitude} from {url}: {e}")
-        return None
-    except ValueError as e: # Includes JSONDecodeError
-        logger.error(f"Error decoding JSON response for lat={latitude}, lon={longitude} from {url}: {e}")
-        return None
+    # Create GeoSeries from point for spatial query
+    matched_row = gdf[gdf.contains(point)]
 
-def _standardize_country_name(name):
-    replacements = {
-        "Cymru / Wales": "Wales",
-        "Northern Ireland / Tuaisceart Éireann": "Northern Ireland",
-        "Alba / Scotland": "Scotland"
-    }
-    return replacements.get(name, name)
+    if not matched_row.empty:
+        name = matched_row.iloc[0]['CTRY24NM']  # Adjust column name if different
+        return name
+    else:
+        logger.warning(f"No match found in shapefile for point: {point}")
+        return None
