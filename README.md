@@ -1,4 +1,4 @@
-# Wiki Loves Monuments - UK API
+# Wiki Loves Monuments UK - API
 
 ## Project Description
 
